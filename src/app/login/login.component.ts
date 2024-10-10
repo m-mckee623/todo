@@ -1,10 +1,14 @@
 import {Component, OnInit} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {NgIf} from '@angular/common';
 
-// @ts-ignore
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule,
+    NgIf
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -12,12 +16,20 @@ export class LoginComponent implements OnInit{
 
   username = 'default'
   password = ''
+  //This will be used for login error handling
+  errorMessage = 'Invalid credentials'
+  invalidLogin = false
 
   constructor () {}
   ngOnInit() {
   }
 
   handleLogin() {
-    console.log(this.username);
+    if(this.username === 'default' && this.password === 'test'){
+      this.invalidLogin = false
+    }
+      else {
+        this.invalidLogin = true
+      }
+    }
   }
-}
