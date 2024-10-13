@@ -9,6 +9,6 @@ export const routes: Routes = [
   // Take to the specified components below
   //E.g. baseURL/login
   { path:'login', component: LoginComponent},
-  { path:'welcome', component: WelcomeComponent},
+  { path:'welcome/:name', component: WelcomeComponent},
   { path:'**', component: ErrorComponent}
 ];
