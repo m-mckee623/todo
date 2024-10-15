@@ -1,19 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {HelloWorldPojo, WelcomeDataService} from '../service/welcome-data.service';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.css'
 })
 export class WelcomeComponent implements OnInit{
 
-  name = ''
+  name : string = ''
+  welcomeMessageFromService : string = '';
 
   constructor(private route:ActivatedRoute,
               private welcomeService:WelcomeDataService ) {
@@ -33,6 +36,6 @@ export class WelcomeComponent implements OnInit{
   }
 
   handleSuccessfulResponse(response: any){
-    console.log(response.message);
+    this.welcomeMessageFromService = response.message;
   }
 }
