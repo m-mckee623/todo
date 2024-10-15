@@ -19,4 +19,9 @@ export class WelcomeDataService {
     //Defined the structure we expect to return, HelloWorldPojo below
     return this.httpClient.get<HelloWorldPojo>('http://localhost:8080/hello-world-pojo');
   }
+
+  executeHelloWorldWithParameterService(name : string){
+    //Defined the structure we expect to return, HelloWorldPojo below
+    return this.httpClient.get<HelloWorldPojo>(`http://localhost:8080/hello-world/path-variable/${name}`);
+  }
 }
