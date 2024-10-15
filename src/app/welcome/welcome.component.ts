@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from '@angular/router';
-import {WelcomeDataService} from '../service/welcome-data.service';
+import {HelloWorldPojo, WelcomeDataService} from '../service/welcome-data.service';
 
 @Component({
   selector: 'app-welcome',
@@ -26,7 +26,13 @@ export class WelcomeComponent implements OnInit{
   }
 
   getWelcomeMessage() {
-    console.log(this.welcomeService.executeHelloWorldBeanService());
-    this.welcomeService.executeHelloWorldBeanService().subscribe();
+
+    this.welcomeService.executeHelloWorldBeanService().subscribe(
+    response => this.handleSuccessfulResponse(response)
+    );
+  }
+
+  handleSuccessfulResponse(response: any){
+    console.log(response.message);
   }
 }
