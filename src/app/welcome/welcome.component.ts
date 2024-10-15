@@ -22,4 +22,8 @@ export class WelcomeComponent implements OnInit{
     //pass the param, name. Snapshot enables this.
     this.name = this.route.snapshot.params['name']
   }
+
+  getWelcomeMessage() {
+
+  }
 }
