@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WelcomeDataService {
 
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
   executeHelloWorldBeanService(){
-    console.log("This is a log for executeHelloWorldBeanService")
+    return this.httpClient.get('http://localhost:8080/hello-world-pojo');
   }
 }
