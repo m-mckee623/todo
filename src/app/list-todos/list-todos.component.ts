@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DatePipe, NgForOf} from '@angular/common';
+import {TodoDataService} from '../service/data/todo-data.service';
 
 //Essentially a POJO here
 export class Todo {
@@ -25,16 +26,20 @@ export class Todo {
 })
 export class ListTodosComponent implements OnInit {
 
-todos = [
-   new Todo(1, "Learn Angular", false, new Date()),
-   new Todo(2, "Learn Java", false, new Date()),
-   new Todo(1, "Get Java cert", false, new Date())
-]
+  todos: Todo[] = [];
 
 
-  constructor() {
+  constructor(
+    private todoService: TodoDataService
+  ) {
   }
+
   ngOnInit() {
+    this.todoService.retrieveAllTodos().subscribe(
+      response => {
+        this.todos = response;
+      }
+    )
   }
 
 }
