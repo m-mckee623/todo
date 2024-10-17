@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DatePipe, NgForOf, NgIf} from '@angular/common';
 import {TodoDataService} from '../service/data/todo-data.service';
+import {Router} from '@angular/router';
 
 //Essentially a POJO here
 export class Todo {
@@ -32,7 +33,9 @@ export class ListTodosComponent implements OnInit {
 
 
   constructor(
-    private todoService: TodoDataService
+    private todoService: TodoDataService,
+    //To be used for routing to update a todoo
+    private router: Router
   ) {
   }
 
@@ -58,5 +61,10 @@ export class ListTodosComponent implements OnInit {
         this.retrieveTodos();
       }
     )
+  }
+
+  updateTodo(id: number) {
+    console.log(`update todo of id ${id}`)
+    this.router.navigate(['todos',id]);
   }
 }
