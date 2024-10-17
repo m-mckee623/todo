@@ -27,4 +27,9 @@ export class TodoDataService {
   deleteTodo(id : number){
     return this.httpClient.delete(`http://localhost:8080/todos/${id}`)
   }
+
+  //Calls the RESTful service to DELETE the id of the record selected.
+  updateTodo(id : number, todo : Todo){
+    return this.httpClient.put(`http://localhost:8080/todos/${id}`, todo)
+  }
 }

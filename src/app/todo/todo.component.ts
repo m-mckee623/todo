@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoDataService} from '../service/data/todo-data.service';
 import {Todo} from '../list-todos/list-todos.component';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 
@@ -24,7 +24,9 @@ export class TodoComponent implements OnInit{
   constructor(
     private todoService: TodoDataService,
     //Activated route vital to return valuable info about the current route.
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    //Navigate to the todoo page when updating.
+    private router: Router
   ) {
 
   }
@@ -42,5 +44,11 @@ export class TodoComponent implements OnInit{
   }
 
   saveTodo() {
+    this.todoService.updateTodo(this.id, this.todo)
+      .subscribe(
+        data => {
+          this.router.navigate(['todos'])
+        }
+      )
   }
 }
