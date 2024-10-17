@@ -12,8 +12,14 @@ export class TodoDataService {
     private httpClient: HttpClient
   ) { }
 
+  //Makes a call to the RESTful service to return all the todos.
   retrieveAllTodos(){
     //Defined the structure we expect to return, HelloWorldPojo below
     return this.httpClient.get<Todo[]>('http://localhost:8080/todos');
+  }
+
+  //Calls the RESTful service to DELETE the id of the record selected.
+  deleteTodo(id : number){
+    return this.httpClient.delete(`http://localhost:8080/todos/${id}`)
   }
 }
