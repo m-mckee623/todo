@@ -32,4 +32,9 @@ export class TodoDataService {
   updateTodo(id : number, todo : Todo){
     return this.httpClient.put(`http://localhost:8080/todos/${id}`, todo)
   }
+
+  //Calls the RESTful service to POST a new Todoo
+  createTodo(todo : Todo){
+    return this.httpClient.post(`http://localhost:8080/todos/`, todo)
+  }
 }
