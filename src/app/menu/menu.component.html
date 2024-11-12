@@ -3,7 +3,7 @@
     <div><a href="https://www.google.com">Matt's ToDo List</a></div>
 
     <ul class="navbar-nav">
-      <li><a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/welcome/default" class="nav-link">Home</a></li>
+      <li><a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/welcome/notAuth" class="nav-link">Home</a></li>
       <li><a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/todos" class="nav-link">Todos</a></li>
     </ul>
 

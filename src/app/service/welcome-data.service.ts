@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 //Define just like a POJO in Java
 export class HelloWorldPojo {
@@ -9,6 +9,7 @@ export class HelloWorldPojo {
 @Injectable({
   providedIn: 'root'
 })
+
 export class WelcomeDataService {
 
   constructor(
@@ -21,7 +22,9 @@ export class WelcomeDataService {
   }
 
   executeHelloWorldWithParameterService(name : string){
+
     //Defined the structure we expect to return, HelloWorldPojo below
     return this.httpClient.get<HelloWorldPojo>(`http://localhost:8080/hello-world/path-variable/${name}`);
   }
+
 }

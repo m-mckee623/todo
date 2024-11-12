@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HelloWorldPojo} from '../welcome-data.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Todo} from '../../list-todos/list-todos.component';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class TodoDataService {
 
   constructor(
