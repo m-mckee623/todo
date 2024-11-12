@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 //Define just like a POJO in Java
 export class HelloWorldPojo {
@@ -21,7 +21,21 @@ export class WelcomeDataService {
   }
 
   executeHelloWorldWithParameterService(name : string){
+    let basicAuthHeaderString = this.createBasicAuthenticationHttpHeader();
+
+    let headers = new HttpHeaders({
+        Authorization: basicAuthHeaderString
+      })
+
     //Defined the structure we expect to return, HelloWorldPojo below
-    return this.httpClient.get<HelloWorldPojo>(`http://localhost:8080/hello-world/path-variable/${name}`);
+    return this.httpClient.get<HelloWorldPojo>(`http://localhost:8080/hello-world/path-variable/${name}`,
+      {headers});
+  }
+
+  createBasicAuthenticationHttpHeader() {
+    let username = 'username';
+    let password = 'password';
+    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
+    return basicAuthHeaderString;
   }
 }
