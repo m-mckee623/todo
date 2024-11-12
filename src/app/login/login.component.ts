@@ -3,6 +3,7 @@ import {FormsModule} from '@angular/forms';
 import {NgIf} from '@angular/common';
 import {Router} from "@angular/router";
 import {HardcodedAuthenticationService} from '../service/hardcoded-authentication.service';
+import {BasicAuthenticationService} from '../service/basic-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import {HardcodedAuthenticationService} from '../service/hardcoded-authenticatio
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
   username = 'username'
   password = 'password'
@@ -24,21 +25,36 @@ export class LoginComponent implements OnInit{
 
   //Dependency injection
   //Adding the router
-  constructor (private router: Router,
-               private hardcodedAuthenticationService: HardcodedAuthenticationService) {}
+  constructor(private router: Router,
+              private hardcodedAuthenticationService: HardcodedAuthenticationService,
+              private basicAuthenticationService: BasicAuthenticationService) {
+  }
 
   ngOnInit() {
   }
 
   handleLogin() {
 
-      if(this.hardcodedAuthenticationService.authenticate(this.username,this.password)){
-        this.invalidLogin = false
-        //Using the router, we will redirect to the welcome page
-        this.router.navigate(['welcome', this.username])
-      }
-      else {
-        this.invalidLogin = true
-      }
+    if (this.hardcodedAuthenticationService.authenticate(this.username, this.password)) {
+      this.invalidLogin = false
+      //Using the router, we will redirect to the welcome page
+      this.router.navigate(['welcome', this.username])
+    } else {
+      this.invalidLogin = true
     }
   }
+
+  handleBasicAuthLogin() {
+    this.basicAuthenticationService.executeBasicAuthenticationService(this.username, this.password)
+      .subscribe(
+        data => {
+          console.log(data)
+          this.router.navigate(['welcome', this.username])
+          this.invalidLogin = false
+        },
+        error => {
+          console.log(error)
+          this.invalidLogin = true
+        })
+  }
+}
