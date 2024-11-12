@@ -5,21 +5,22 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class HttpInterceptorBasicAuthService implements HttpInterceptor {
 
   constructor() { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let username = 'username';
     let password = 'password';
     let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
 
-    req = req.clone({
+    httpRequest = httpRequest.clone({
       setHeaders : {
         Authorization : basicAuthHeaderString
       }
     })
 
-    return next.handle(req)
+    return next.handle(httpRequest)
   }
 }

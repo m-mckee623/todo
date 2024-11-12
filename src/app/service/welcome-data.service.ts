@@ -9,6 +9,7 @@ export class HelloWorldPojo {
 @Injectable({
   providedIn: 'root'
 })
+
 export class WelcomeDataService {
 
   constructor(
@@ -21,21 +22,9 @@ export class WelcomeDataService {
   }
 
   executeHelloWorldWithParameterService(name : string){
-    let basicAuthHeaderString = this.createBasicAuthenticationHttpHeader();
-
-    let headers = new HttpHeaders({
-        Authorization: basicAuthHeaderString
-      })
 
     //Defined the structure we expect to return, HelloWorldPojo below
-    return this.httpClient.get<HelloWorldPojo>(`http://localhost:8080/hello-world/path-variable/${name}`,
-      {headers});
+    return this.httpClient.get<HelloWorldPojo>(`http://localhost:8080/hello-world/path-variable/${name}`);
   }
 
-  createBasicAuthenticationHttpHeader() {
-    let username = 'username';
-    let password = 'password';
-    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
-    return basicAuthHeaderString;
-  }
 }
