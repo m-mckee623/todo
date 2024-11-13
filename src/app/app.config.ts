@@ -7,9 +7,13 @@ import {HttpInterceptorBasicAuthService} from './service/http/http-interceptor-b
 import {FormsModule} from '@angular/forms';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), FormsModule,{
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpInterceptorBasicAuthService,
-    multi:true
-  }, provideRouter(routes), provideHttpClient(withInterceptorsFromDi())]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), FormsModule
+  //   ,{
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: HttpInterceptorBasicAuthService,
+  //   multi:true
+  // }
+    ,
+    provideRouter(routes),
+    provideHttpClient()]
 };
