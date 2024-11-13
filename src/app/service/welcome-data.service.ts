@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {API_URL} from '../app.constants';
 
 //Define just like a POJO in Java
 export class HelloWorldPojo {
@@ -18,13 +19,13 @@ export class WelcomeDataService {
 
   executeHelloWorldBeanService(){
     //Defined the structure we expect to return, HelloWorldPojo below
-    return this.httpClient.get<HelloWorldPojo>('http://localhost:8080/hello-world-pojo');
+    return this.httpClient.get<HelloWorldPojo>(`${API_URL}/hello-world-pojo`);
   }
 
   executeHelloWorldWithParameterService(name : string){
 
     //Defined the structure we expect to return, HelloWorldPojo below
-    return this.httpClient.get<HelloWorldPojo>(`http://localhost:8080/hello-world/path-variable/${name}`);
+    return this.httpClient.get<HelloWorldPojo>(`${API_URL}/hello-world/path-variable/${name}`);
   }
 
 }
