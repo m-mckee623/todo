@@ -17,11 +17,13 @@ import {BasicAuthenticationService} from '../service/basic-authentication.servic
 
 export class MenuComponent implements OnInit {
  // isUserLoggedIn: boolean = false;
+  username: string | null = '';
 
   constructor(public basicAuthenticationService: BasicAuthenticationService){ }
 
   ngOnInit() {
    // this.isUserLoggedIn = this.hardcodedAuthenticationService.isUserLoggedIn();
+    this.username = sessionStorage.getItem('authenticateUser');
   }
 
 }

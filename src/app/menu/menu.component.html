@@ -3,7 +3,7 @@
     <div><a href="https://www.google.com">Matt's ToDo List</a></div>
 
     <ul class="navbar-nav">
-      <li><a *ngIf="basicAuthenticationService.getAuthenticatedUser()" routerLink="/welcome/username" class="nav-link">Home</a></li>
+      <li><a *ngIf="basicAuthenticationService.getAuthenticatedUser()" routerLink="/welcome/{{username}}" class="nav-link">Home</a></li>
       <li><a *ngIf="basicAuthenticationService.getAuthenticatedUser()" routerLink="/todos" class="nav-link">Todos</a></li>
     </ul>
 
