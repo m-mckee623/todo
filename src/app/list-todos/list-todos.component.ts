@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {DatePipe, NgForOf, NgIf} from '@angular/common';
 import {TodoDataService} from '../service/data/todo-data.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 //Essentially a POJO here
 export class Todo {
   constructor(
+    public username: string,
     public id: number,
     public description: string,
     public done: boolean,
@@ -30,22 +31,26 @@ export class ListTodosComponent implements OnInit {
 
   todos: Todo[] = [];
   notificationMessage : string = '';
+  username: string | null = '';
 
 
   constructor(
     private todoService: TodoDataService,
     //To be used for routing to update a todoo
-    private router: Router
+    private router: Router,
+    private route:ActivatedRoute
   ) {
   }
 
   ngOnInit() {
-    this.retrieveTodos();
+    this.username = sessionStorage.getItem('authenticateUser');
+    if (this.username != null)
+    this.retrieveTodos(this.username);
   }
 
   //Moved this out to a method. Not great possibly performance wise but for this, we can use for the meantime.
-  retrieveTodos(){
-    this.todoService.retrieveAllTodos().subscribe(
+  retrieveTodos(username: string){
+    this.todoService.retrieveAllTodos(username).subscribe(
       response => {
         this.todos = response;
       }
@@ -53,12 +58,13 @@ export class ListTodosComponent implements OnInit {
   }
 
   //This method takes the id of the id. It calls the data service.
-  deleteTodo(id: number) {
+  deleteTodo(username: string | null , id: number) {
     console.log('Delete todo id', id);
-    this.todoService.deleteTodo(id).subscribe(
+    this.todoService.deleteTodo(username,id).subscribe(
       response => {
         this.notificationMessage = `Todo, ${id}, deleted successfully.`;
-        this.retrieveTodos();
+        if (this.username != null)
+          this.retrieveTodos(this.username);
       }
     )
   }

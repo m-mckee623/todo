@@ -19,8 +19,9 @@ import {DatePipe, NgIf} from '@angular/common';
 export class TodoComponent implements OnInit{
 
   //ID will be used
+  username: string | null = '';
   id: number = 0;
-  todo: Todo = new Todo(this.id, '', false, new Date());
+  todo: Todo = new Todo('',this.id, '', false, new Date());
 
   constructor(
     private todoService: TodoDataService,
@@ -32,16 +33,18 @@ export class TodoComponent implements OnInit{
 
   }
   ngOnInit(): void {
+    this.username = sessionStorage.getItem('authenticateUser');
     this.displayTodo();
   }
 
   displayTodo(){
     //Retreive the id for the todoo selected
     this.id = this.route.snapshot.params['id'];
-    this.todo = new Todo(this.id,'',false,new Date());
+    this.todo = new Todo('',this.id,'',false,new Date());
 
     if(this.id != -1){
-    this.todoService.retrieveTodo(this.id)
+      if (this.username != null)
+    this.todoService.retrieveTodo(this.username,this.id)
       .subscribe(
         data => this.todo = data
       )
@@ -49,15 +52,16 @@ export class TodoComponent implements OnInit{
   }
 
   saveTodo() {
-    if (this.id === -1) {
-      this.todoService.createTodo(this.todo)
+    if (this.id == -1) {
+      console.log(this.id)
+      this.todoService.createTodo(this.username,this.todo)
         .subscribe(
           data => {
             this.router.navigate(['todos'])
           }
         )
     } else {
-      this.todoService.updateTodo(this.id, this.todo)
+      this.todoService.updateTodo(this.username,this.id, this.todo)
         .subscribe(
           data => {
             this.router.navigate(['todos'])
