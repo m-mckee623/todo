@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from '@angular/router';
-import {HelloWorldPojo, WelcomeDataService} from '../service/welcome-data.service';
+import {WelcomeMessagePojo, WelcomeDataService} from '../service/welcome-data.service';
 import {NgIf} from '@angular/common';
 
 @Component({
@@ -26,14 +26,6 @@ export class WelcomeComponent implements OnInit{
   ngOnInit() {
     //pass the param, name. Snapshot enables this.
     this.name = this.route.snapshot.params['name']
-  }
-
-  getWelcomeMessage() {
-
-    this.welcomeService.executeHelloWorldBeanService().subscribe(
-    response => this.handleSuccessfulResponse(response),
-      error => this.handleErrorResponse(error)
-    );
   }
 
   getWelcomeMessageWithParameter() {

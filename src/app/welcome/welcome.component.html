@@ -1,15 +1,21 @@
-<h1>Welcome, {{name}}.</h1>
+<h1>This can be used to help plan your day</h1>
 
 <div class="container">
-  You can manage your todos <a routerLink="/todos"> here</a>
+
+  <div>
+    <button (click)="getWelcomeMessageWithParameter()" class="btn btn-success">Get Welcome Message</button>
+  </div>
+
+  <div class="container" *ngIf="welcomeMessageFromService">
+    <H2>{{welcomeMessageFromService}}</H2>
+  </div>
+
+<p></p>
+
+  <div>
+    <button [routerLink]="['/todos']" class="btn btn-primary">Go to your todos</button>
+  </div>
+
 </div>
 
-<div class="container">
-  Click here to get a customized welcome message
-  <button (click)="getWelcomeMessageWithParameter()" class="btn btn-success">Get Welcome Message</button>
-</div>
 
-<div class="container" *ngIf="welcomeMessageFromService">
-  <H2>Your customized welcome message</H2>
-  {{welcomeMessageFromService}}
-</div>

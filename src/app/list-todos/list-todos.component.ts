@@ -57,7 +57,7 @@ export class ListTodosComponent implements OnInit {
     )
   }
 
-  //This method takes the id of the id. It calls the data service.
+
   deleteTodo(username: string | null , id: number) {
     console.log('Delete todo id', id);
     this.todoService.deleteTodo(username,id).subscribe(
