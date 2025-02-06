@@ -1,0 +1,16 @@
+<h1>Register</h1>
+
+<div class="container">
+  <div *ngIf="registrationAttempted">
+    <div *ngIf="invalidRegistration; else successMessage" class="alert alert-warning">{{ errorMessage }}</div>
+    <ng-template #successMessage>
+      <div class="alert alert-success">{{ errorMessage }}</div>
+    </ng-template>
+  </div>
+  <div>
+    User name: <input type="text" name="username" [(ngModel)]="username">
+    Password: <input type="password" name="password" [(ngModel)]="password">
+
+    <button (click)="register(username, password)" class="btn btn-success">Register</button>
+  </div>
+</div>

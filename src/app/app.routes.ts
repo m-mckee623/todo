@@ -5,6 +5,8 @@ import {ErrorComponent} from './error/error.component';
 import {ListTodosComponent} from './list-todos/list-todos.component';
 import {LogoutComponent} from './logout/logout.component';
 import {RouteGuardService} from './service/route-guard.service';
+import {RegistrationComponent} from './registration/registration.component';
+import {TodoComponent} from './todo/todo.component';
 
 export const routes: Routes = [
   // Nothing entered, take to the default which is the login component
@@ -12,8 +14,10 @@ export const routes: Routes = [
   // Take to the specified components below
   //E.g. baseURL/login
   { path:'login', component: LoginComponent},
+  { path:'register', component: RegistrationComponent},
   { path:'logout', component: LogoutComponent, canActivate:[RouteGuardService]},
-  { path:'welcome/:name', component: WelcomeComponent, canActivate:[RouteGuardService]},
+  { path:'welcome', component: WelcomeComponent, canActivate:[RouteGuardService]},
   { path:'todos', component: ListTodosComponent, canActivate:[RouteGuardService]},
+  { path:'todos/:id', component: TodoComponent, canActivate:[RouteGuardService]},
   { path:'**', component: ErrorComponent}
 ];

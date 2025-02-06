@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -12,14 +12,24 @@ import {ActivatedRoute, RouterLink} from '@angular/router';
 })
 export class WelcomeComponent implements OnInit{
 
-  name = ''
+  username: string | null = '';
 
-  constructor(private route:ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+              //Navigate to the todoo page when updating.
+              private router: Router) {
 
   }
 
   ngOnInit() {
     //pass the param, name. Snapshot enables this.
-    this.name = this.route.snapshot.params['name']
+    this.username = sessionStorage.getItem('authenticateUser');
+  }
+
+
+  capitalizeFirstLetter(name: string | null): string {
+    if (!name) {
+      return '';
+    }
+    return name.charAt(0).toUpperCase() + name.slice(1);
   }
 }

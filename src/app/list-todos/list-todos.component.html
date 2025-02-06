@@ -1,18 +1,44 @@
-<h1>My Todo's</h1>
+<div class="alert alert-success" *ngIf='notificationMessage'>{{notificationMessage}}</div>
 
 <div class="container">
-<table class="table">
-  <thead>
-    <th>description</th>
-    <th>Due Date</th>
-    <th>Is completed?</th>
-  </thead>
-  <tbody>
-  <tr *ngFor="let todo of todos">
-    <td>{{todo.description}}</td>
-    <td>{{todo.targetDate | date}}</td>
-    <td>{{todo.done}}</td>
-  </tr>
-  </tbody>
-</table>
+  <!-- Display the capitalized username -->
+  <div class="username">
+    <h2>Welcome, {{capitalizeFirstLetter(username)}}, here are your todos</h2>
+  </div>
+
+  <!-- Spinner -->
+  <div *ngIf="loading" class="spinner">
+    Loading...
+  </div>
+
+  <!-- Display "You have no todos" if the todos list is empty -->
+  <div *ngIf="!loading && todos.length === 0" class="no-todos-message">
+    <h3>You have<br>no todos</h3>
+  </div>
+
+  <!-- Display the todos if the list is not empty -->
+  <div *ngIf="!loading && todos.length > 0">
+    <table class="table">
+      <thead>
+      <th>Task title</th>
+      <th>Due Date</th>
+      <th>Is completed?</th>
+      <th>Update</th>
+      <th>Delete</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let todo of todos">
+        <td>{{todo.description}}</td>
+        <td>{{todo.targetDate | date}}</td>
+        <td>{{todo.done}}</td>
+        <td><button (click)="updateTodo(todo.id)" class="btn btn-success">Update</button></td>
+        <td><button (click)="deleteTodo(username, todo.id)" class="btn btn-danger">Delete</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <button (click)="addNewTodo()" class="btn btn-success">Add New Task</button>
+  </div>
 </div>
