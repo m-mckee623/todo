@@ -21,7 +21,7 @@ export class TodoComponent implements OnInit{
   //ID will be used
   username: string | null = '';
   id: number = 0;
-  todo: Todo = new Todo('',this.id, '', false, new Date());
+  todo: Todo = new Todo('',this.id, '', false, new Date(),'');
 
   constructor(
     private todoService: TodoDataService,
@@ -40,7 +40,7 @@ export class TodoComponent implements OnInit{
   displayTodo(){
     //Retreive the id for the todoo selected
     this.id = this.route.snapshot.params['id'];
-    this.todo = new Todo('',this.id,'',false,new Date());
+    this.todo = new Todo('',this.id,'',false,new Date(),'');
 
     if(this.id != -1){
       if (this.username != null)
@@ -69,4 +69,10 @@ export class TodoComponent implements OnInit{
         )
     }
   }
+
+  navigateBack()
+  {
+    this.router.navigate(['/todos']);
+  }
 }
+

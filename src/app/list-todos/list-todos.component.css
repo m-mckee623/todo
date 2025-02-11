@@ -1,25 +1,23 @@
-div.no-todos-message {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5em;
-  color: #666;
-  text-align: center;
+.container {
+  margin-top: 30px;
 }
 
+.username {
+  margin-bottom: 20px;
+}
 
-.username h2 {
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  text-align: center;
+.table {
   margin-top: 20px;
 }
 
 .spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 1.5em;
-  color: #007bff;
-  margin: 20px 0;
+}
+
+.no-todos-message {
+  margin-top: 20px;
+}
+
+button {
+  margin-top: 20px;
 }
