@@ -59,15 +59,24 @@ export class ListTodosComponent implements OnInit {
   }
 
   //Moved this out to a method. Not great possibly performance wise but for this, we can use for the meantime.
-  retrieveTodos(username: string){
+  retrieveTodos(username: string) {
     this.todoService.retrieveAllTodos(username).subscribe(
       response => {
-        this.todos = response;
-        this.loading = false;
-      }
-    )
-  }
+        console.log(response); // Log the response for debugging
+        this.todos = response; // Update the todos state with the retrieved data
+        this.loading = false;  // Indicate that loading is complete
+      },
+      error => {
+        if (error.status === 204) {
+          console.log("No content available for the user.");
 
+        } else {
+          console.log("An error occurred:", error);
+        }
+        this.loading = false; // Ensure loading indicator is hidden in case of error
+      }
+    );
+  }
 
   deleteTodo(username: string | null , id: number) {
     console.log('Delete todo id', id);

@@ -12,8 +12,8 @@
   </div>
 
   <!-- Display "You have no todos" if the todos list is empty -->
-  <div *ngIf="!loading && todos.length === 0" class="no-todos-message">
-    <h3>You have<br>no todos</h3>
+  <div *ngIf="!loading && (!todos || todos.length === 0)" class="no-todos-message">
+    <h3>You have no todos</h3>
   </div>
 
   <!-- Display the todos if the list is not empty -->

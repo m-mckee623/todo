@@ -39,7 +39,7 @@ export class HardcodedAuthenticationService {
 
   register(user: any): Observable<any> {
     return this.http.post<any>(
-      `${API_URL}/login`,
+      `${API_URL}/register`,
       user,
       { headers: { 'Content-Type': 'application/json' } }
     );

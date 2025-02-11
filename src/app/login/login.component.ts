@@ -34,17 +34,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleLogin() {
-
-    if (this.hardcodedAuthenticationService.authenticate(this.username, this.password)) {
-      this.invalidLogin = false
-      //Using the router, we will redirect to the welcome page
-      this.router.navigate(['welcome', this.username])
-    } else {
-      this.invalidLogin = true
-    }
-  }
-
   login(username: string, password: string): void {
     this.hardcodedAuthenticationService.login(username, password).subscribe(
       response => {
@@ -56,7 +45,7 @@ export class LoginComponent implements OnInit {
           this.invalidLogin = false
           //Using the router, we will redirect to the welcome page
           sessionStorage.setItem('authenticateUser', this.username)
-          this.router.navigate(['welcome', this.username])
+          this.router.navigate(['welcome'])
         }
       },
       error => {

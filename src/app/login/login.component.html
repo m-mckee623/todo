@@ -6,6 +6,6 @@
       User name: <input type="text" name="username" [(ngModel)]="username">
       Password: <input type="password" name="password" [(ngModel)]="password">
 
-      <button (click)=login(username,password) class="btn btn-success">Login</button>
+      <button (click)=login(username.toLowerCase(),password) class="btn btn-success">Login</button>
     </div>
 </div>

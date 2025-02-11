@@ -1,11 +1,12 @@
-.no-todos-message h2 {
-  font-family: 'Comic Sans MS', cursive, sans-serif; /* Example cool font */
-  color: #47ffe3; /* Tomato color */
+div.no-todos-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  color: #666;
   text-align: center;
-  font-size: 2em;
-  margin-top: 20px;
-  text-shadow: 1px 1px 3px #000; /* Adds a shadow effect */
 }
+
 
 .username h2 {
   font-family: 'Arial', sans-serif;
