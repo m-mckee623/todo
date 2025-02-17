@@ -83,7 +83,7 @@ export class ListTodosComponent implements OnInit {
     console.log('Delete todo id', id);
     this.todoService.deleteTodo(username,id).subscribe(
       response => {
-        this.notificationMessage = `Todo, ${id}, deleted successfully.`;
+        this.notificationMessage = `Todo, deleted successfully.`;
         if (this.username != null)
           this.retrieveTodos(this.username);
       }
