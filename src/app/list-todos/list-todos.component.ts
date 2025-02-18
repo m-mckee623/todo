@@ -44,23 +44,30 @@ export class ListTodosComponent implements OnInit {
   ) {
   }
 
+
+  //Initialized on load.
   ngOnInit() {
+    //Check the session storage, item, authenticate user exists.
     this.username = sessionStorage.getItem('authenticateUser');
     if (this.username != null)
+      //Step 3. The method calls a service method.
     this.showSpinnerAndLoadTodos(this.username);
   }
 
   showSpinnerAndLoadTodos(username : string): void {
+    //Initially set loading to true
     this.loading = true;
     setTimeout(() => {
+      //If the user is logged in, call the method, retrieveTodos for the user
       if (this.username != null) {
         this.retrieveTodos(this.username);
       }
-    }, 3000); // Show spinner for 3 seconds
+    }, 3000); // Show spinner for 3 seconds, units is in milliseconds
   }
 
-  //Moved this out to a method. Not great possibly performance wise but for this, we can use for the meantime.
+  //Call method retrieveAllTodos within the to-do service
   retrieveTodos(username: string) {
+    //This is the service method
     this.todoService.retrieveAllTodos(username).subscribe(
       response => {
         console.log(response); // Log the response for debugging

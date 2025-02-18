@@ -3,13 +3,18 @@
     <div><a href="https://www.google.com">Daily Planner</a></div>
 
     <ul class="navbar-nav">
+      <!-- Only show home and todos button if the user is logged in -->
       <li><a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/welcome" class="nav-link">Home</a></li>
+      <!-- Step 1. A user clicks the to-do button -->
+      <!-- Step 2. The button triggers a method in the component's TypeScript file. -->
       <li><a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/todos" class="nav-link">Todos</a></li>
     </ul>
 
     <ul class="navbar-nav navbar-collapse justify-content-end">
+      <!-- Only show reister and login button if the user is not logged in -->
       <li><a *ngIf="!hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/register" class="nav-link">Register</a></li>
       <li><a *ngIf="!hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
+      <!-- Only show logout button if the user is logged in -->
       <li><a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li>
     </ul>
   </nav>

@@ -16,6 +16,9 @@ export class TodoDataService {
 
   retrieveAllTodos(username : string){
 
+    //Step 4. The service method makes a REST call to the backend server.
+    //Sending a REST, GET request to the URL, http://localhost:8080/users/leonardo/todos
+    //API_URL is a constant = "http://localhost:8080"
     return this.httpClient.get<Todo[]>(`${API_URL}/users/${username}/todos`);
   }
 
