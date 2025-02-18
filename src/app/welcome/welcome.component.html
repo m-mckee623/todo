@@ -1,6 +1,15 @@
 <h1 class="text-center">Welcome, {{ capitalizeFirstLetter(username) }}</h1>
-<h2 class="text-center">Start planning your day!</h2>
 
-<div class="container text-center mt-4">
-  <p>You can manage your todos <a routerLink="/todos">here</a>.</p>
+<!-- Display "You have no todos" if the todos list is empty -->
+<div *ngIf="!todos || todos.length === 0" class="no-todos-message text-center mt-4 mb-4">
+  <h3>You have no todos therefore, no breakdown is visible.</h3>
+  <h4>Add tasks to see your breakdown</h4>
+</div>
+<div *ngIf="todos.length > 0" class="no-todos-message text-center mt-4 mb-4">
+  <h2 class="text-center">Checkout the breakdown of your current agenda!</h2>
+</div>
+<div class="container d-flex justify-content-center">
+  <div class="col-md-6">
+    <canvas id="canvas"></canvas>
+  </div>
 </div>
